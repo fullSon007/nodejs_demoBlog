@@ -1,10 +1,9 @@
-
 const express = require('express')
 const router = express.Router()
-const newsController = require('../app/controllers/NewsController');
+const loginController = require('../app/controllers/LoginController');
 
 // cấu hình routes
-router.get('/', newsController.index);
+router.post('/', loginController.login);
 
 
 module.exports = router;

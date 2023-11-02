@@ -1,9 +1,15 @@
 
+const blogPost = require('../models/Blog');
+
 class SitesController {
 
     // [Get] /
-    home(req, res) {
-        res.render('home');
+    home(req, res, next) {
+        // res.render('home');
+
+        blogPost.find({}) 
+            .then(blogposts => res.json(blogposts))
+            .catch(next)
     }
 
 
