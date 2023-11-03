@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
+require('dotenv').config()
 const app = express()
 const port = 8000
 
