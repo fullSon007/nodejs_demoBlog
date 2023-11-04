@@ -1,10 +1,14 @@
 const newsRouter = require('./news');
 const sitesRouter = require('./sites');
 const loginRouter = require('./login');
+const registerRouter = require('./register');
+const {requireSignin, isAdmin} = require('../app/midlewares/auth')
 
 function route(app) {
 
-  app.use('/login', loginRouter);
+  app.use('/login', loginRouter );
+
+  app.use('/register', registerRouter);
 
   app.use('/news', newsRouter);
   
@@ -13,9 +17,9 @@ function route(app) {
     //       res.render('home');
     //     })
       
-    //   app.get('/news', (req, res) => {
-    //     res.render('news');
-    //   })
+  app.get('/admin',requireSignin, isAdmin, (req, res) => {
+        res.json({message: "You got access to admin secret page"})
+  })
 
     
       
