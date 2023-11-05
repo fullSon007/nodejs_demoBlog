@@ -55,20 +55,21 @@ class RegisterController {
 
         //generate jwt
         const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {
-            expiresIn: "2h",
+            expiresIn: "1d",
         });
 
         user.password = undefined;
 
         // send response
-        res.json({user , token})
+         res.json({user , token})
+        //res.render("home")
         
         } catch (err) {
             console.log(err);
             return res.status(400).json({error: "Something went wrong!"})
         }
 
-        console.log(req.body)
+        // console.log(user)
         
     }
 

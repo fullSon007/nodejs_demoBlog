@@ -30,13 +30,29 @@ class LoginController {
 
             // create jwt
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-                expiresIn: "2h",
+                expiresIn: "1d",
             });
+
+            let oldTokens = user.tokens || []
+
+            if(oldTokens.length) {
+                oldTokens = oldTokens.filter(t => {
+                    const timeDiff = (Date.now() - parseInt(t.signedAt)) / 1000
+                    if(timeDiff < 86400) {
+                        return t
+                    }
+                })
+            }
+
+            await User.findByIdAndUpdate(user._id, 
+                {tokens: [...oldTokens,{token, signedAt:Date.now().toString()}]
+            })
 
             user.password = undefined;
 
             // send response
-            res.json({ user, token })
+            //res.render("home");
+             res.json({ user, token });
 
 
         } catch (err) {

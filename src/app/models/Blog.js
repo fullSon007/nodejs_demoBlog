@@ -33,8 +33,9 @@ const UserSchema = new Schema({
     role: {
       type: String,
       default: "Subcriber"
-    }
+    },
 
+    tokens: [{type: Object}]
 
 },{ timestamps: true});
 

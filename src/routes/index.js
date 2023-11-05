@@ -1,10 +1,13 @@
 const newsRouter = require('./news');
 const sitesRouter = require('./sites');
 const loginRouter = require('./login');
+const logoutRouter = require('./logout');
 const registerRouter = require('./register');
 const {requireSignin, isAdmin} = require('../app/midlewares/auth')
 
 function route(app) {
+
+  app.use('/logout', logoutRouter);
 
   app.use('/login', loginRouter );
 

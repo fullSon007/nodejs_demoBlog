@@ -4,12 +4,18 @@ const blogPost = require('../models/Blog');
 class SitesController {
 
     // [Get] /
-    home(req, res, next) {
-        // res.render('home');
+    frontface(req, res, next) {
+        res.render('frontface');
+    
+    }
 
-        blogPost.find({}) 
-            .then(blogposts => res.json(blogposts))
-            .catch(next)
+    // [Get] /
+    home(req, res, next) {
+         res.render('home');
+
+        // blogPost.find({}) 
+        //     .then(blogposts => res.json(blogposts))
+        //     .catch(next)
     }
 
 
