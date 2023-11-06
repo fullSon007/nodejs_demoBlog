@@ -35,25 +35,27 @@ class LoginController {
 
             let oldTokens = user.tokens || []
 
-            if(oldTokens.length) {
+            if (oldTokens.length) {
                 oldTokens = oldTokens.filter(t => {
                     const timeDiff = (Date.now() - parseInt(t.signedAt)) / 1000
-                    if(timeDiff < 86400) {
+                    if (timeDiff < 86400) {
                         return t
                     }
                 })
             }
 
-            await User.findByIdAndUpdate(user._id, 
-                {tokens: [...oldTokens,{token, signedAt:Date.now().toString()}]
-            })
+            await User.findByIdAndUpdate(user._id,
+                {
+                    tokens: [...oldTokens, { token, signedAt: Date.now().toString() }]
+                })
 
             user.password = undefined;
 
             // send response
-            //res.render("home");
+            
              res.json({ user, token });
-
+             res.render("home");
+            //  res.json({ redirectUrl: '/home'  });
 
         } catch (err) {
             console.log(err);

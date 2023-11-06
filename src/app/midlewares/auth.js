@@ -1,13 +1,14 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/Blog');
 // User Login
-exports.requireSignin = (req, res, next) => {
+exports.requireSignin = async (req, res, next) => {
     try {
         const decoded = jwt.verify(
             req.headers.authorization,
             process.env.JWT_SECRET
         );
         console.log(decoded);
+        const user = await User.findById(decoded._id);
         req.user = user;
         next();
     } catch (err) {
