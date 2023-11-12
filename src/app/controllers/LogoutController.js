@@ -5,9 +5,9 @@ const { token } = require('morgan');
 
 class LogoutController {
 
-    ren(req, res) {
-        res.render("home")
-    }
+    // ren(req, res) {
+    //     res.render("home")
+    // }
 
     async logout(req, res) {
 

@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
+const cors = require('cors')
 require('dotenv').config()
 const app = express()
 const port = 8000
@@ -20,6 +21,8 @@ app.use(express.urlencoded(
   }
 ))
 
+// use to connect client
+app.use(cors());
 app.use(express.json({ limit: "5mb"}))
 
 

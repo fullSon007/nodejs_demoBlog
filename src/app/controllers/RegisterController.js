@@ -61,7 +61,7 @@ class RegisterController {
         user.password = undefined;
 
         // send response
-         res.json({user , token})
+        res.json({user , token})
         //res.render("home")
         
         } catch (err) {
